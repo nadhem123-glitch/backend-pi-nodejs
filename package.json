@@ -1,0 +1,16 @@
+{
+  "name": "6bbf7aa01ee0a1b2064fcfd61a77dc1b-1f9146c368a1c58546b24e53a0313a0b26134e9d",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.2",
+    "mqtt": "^4.2.6"
+  }
+}
