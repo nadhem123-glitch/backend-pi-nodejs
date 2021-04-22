@@ -21,7 +21,7 @@ let client = {}
 
 
 // ========== MONGO =============
-mongoose.connect(`mongodb://localhost:27017/${database_name}`, { useNewUrlParser: true,  useUnifiedTopology: true })
+mongoose.connect(`mongodb://192.168.1.9:27017/${database_name}`, { useNewUrlParser: true,  useUnifiedTopology: true })
 const db = mongoose.connection
 
 
