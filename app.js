@@ -25,8 +25,9 @@ mongoose.connect(`mongodb://192.168.1.9:27017/${database_name}`, { useNewUrlPars
 const db = mongoose.connection
 
 
-const signals_schema = new mongoose.Schema({
-  temp: []
+const 
+signals_schema = new mongoose.Schema({
+  temp: String
 })
 
 const Signal = mongoose.model('Signal', signals_schema)
@@ -34,7 +35,7 @@ const Signal = mongoose.model('Signal', signals_schema)
 
 // Get all predefined containers and subscribe to their channels (where they report data according to standardized channel naming schema) 
  setupMQTT();
-setupSubscriptions(containerRefs);
+setupSubscriptions();
   
   
  
@@ -115,26 +116,18 @@ function setupMQTT () {
  
   // Save data to database
   if(topic.includes("temp")) {
-    Signal.updateOne(
-      {_id: '60644f813188a417f7fff119'},
-      {$push: {
-        "temp": {
-          $each: [{value:parseInt(message), time:new Date().toISOString()}],
-          $position: 0 // Insert at the begging of the array
-        }
-      }},
-      (err, res)=> {
-        if (err) console.log(`Error: ${err}`);
-        // console.log(`update result ${JSON.stringify(res)}`);
         console.log("[Updated] TEMPERATURE data")
-      }
-    );
-  }// do temp update
+	 const sig = new Signal({"temp": message})
+	sig.save((err,signal) => {
+	if(err)console.log('ERROR');
+	else {console.log('SIG saved')}
+})
+ }// do temp update
 })
 
 }
 
-function setupSubscriptions (containersRefs) {
+function setupSubscriptions () {
   // SUBSCRIBE
     subTopics.forEach((topic) => { // subscribe to needed subchannels
       const channel = `${topic}`;
