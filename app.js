@@ -9,7 +9,8 @@ const port = 3000
 
 // mqtt setup 
 //const IP = "192.168.1.13";
-const IP = "192.168.1.21";
+//test
+const IP = "192.168.1.10";
 const PORT ="1883";
 const ENDPOINT = `mqtt://${IP}:${PORT}`;
 const database_name = "pidev_data"
