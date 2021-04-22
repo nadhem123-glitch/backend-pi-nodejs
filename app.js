@@ -33,8 +33,8 @@ const Signal = mongoose.model('Signal', signals_schema)
 
 
 // Get all predefined containers and subscribe to their channels (where they report data according to standardized channel naming schema) 
-// setupMQTT();
-//setupSubscriptions(containerRefs);
+ setupMQTT();
+setupSubscriptions(containerRefs);
   
   
  
@@ -137,7 +137,7 @@ function setupMQTT () {
 function setupSubscriptions (containersRefs) {
   // SUBSCRIBE
     subTopics.forEach((topic) => { // subscribe to needed subchannels
-      const channel = `${cont}/${topic}`;
+      const channel = `${topic}`;
       client.subscribe(channel, {qos: 1});
       console.log(`[Subscription] ${channel} Channel`);
     })
